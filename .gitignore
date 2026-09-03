@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+
+# Personal biometric/data files
+dataset/
+owner_photos/
+security_records/
+temporary_guests/
+impostor_photos/
+
+# Audio/debug data
+*.wav
+voice_debug/
+
+# Local database / personal registration data
+*.db
+face_database.json
+
+# Old/generated LBPH files
+trainer/
