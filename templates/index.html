@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Intelligent Access Control System
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                #f4f6f8;
+
+            color:
+                #1f2937;
+        }
+
+
+        /* =================================================
+           HEADER
+        ================================================= */
+
+        header {
+
+            background:
+                #111827;
+
+            color:
+                white;
+
+            padding:
+                22px 35px;
+
+            box-shadow:
+                0 2px 8px
+                rgba(0,0,0,0.15);
+        }
+
+
+        header h1 {
+
+            margin:
+                0;
+
+            font-size:
+                28px;
+        }
+
+
+        header p {
+
+            margin:
+                6px 0 0;
+
+            color:
+                #cbd5e1;
+
+            font-size:
+                14px;
+        }
+
+
+        /* =================================================
+           MAIN
+        ================================================= */
+
+        .container {
+
+            width:
+                94%;
+
+            max-width:
+                1500px;
+
+            margin:
+                25px auto;
+        }
+
+
+        /* =================================================
+           GRID
+        ================================================= */
+
+        .grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.4fr 1fr;
+
+            gap:
+                20px;
+        }
+
+
+        @media(max-width: 900px) {
+
+            .grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+        }
+
+
+        /* =================================================
+           CARD
+        ================================================= */
+
+        .card {
+
+            background:
+                white;
+
+            border-radius:
+                14px;
+
+            padding:
+                22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.08);
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .card h2 {
+
+            margin-top:
+                0;
+
+            font-size:
+                19px;
+        }
+
+
+        /* =================================================
+           CAMERA
+        ================================================= */
+
+        .camera {
+
+            width:
+                100%;
+
+            max-height:
+                520px;
+
+            object-fit:
+                contain;
+
+            background:
+                #111827;
+
+            border-radius:
+                10px;
+        }
+
+
+        /* =================================================
+           RESULT
+        ================================================= */
+
+        .result-box {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                12px;
+
+            margin-top:
+                15px;
+        }
+
+
+        .result-item {
+
+            background:
+                #f8fafc;
+
+            border-radius:
+                10px;
+
+            padding:
+                16px;
+        }
+
+
+        .result-label {
+
+            font-size:
+                12px;
+
+            color:
+                #64748b;
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .result-value {
+
+            font-size:
+                20px;
+
+            font-weight:
+                bold;
+        }
+
+
+        /* =================================================
+           ACCESS
+        ================================================= */
+
+        .access {
+
+            margin-top:
+                15px;
+
+            padding:
+                15px;
+
+            border-radius:
+                10px;
+
+            font-size:
+                18px;
+
+            font-weight:
+                bold;
+
+            text-align:
+                center;
+        }
+
+
+        /* =================================================
+           PASSWORD CARD
+        ================================================= */
+
+        #passwordCard {
+
+            display:
+                none;
+
+            border:
+                3px solid #111827;
+
+            background:
+                #ffffff;
+        }
+
+
+        .password-title {
+
+            text-align:
+                center;
+
+            font-size:
+                22px;
+
+            font-weight:
+                bold;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        #passwordValue {
+
+            text-align:
+                center;
+
+            font-size:
+                42px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                10px;
+
+            padding:
+                20px 10px;
+
+            background:
+                #f1f5f9;
+
+            border-radius:
+                12px;
+
+            margin:
+                10px 0;
+
+            font-family:
+                monospace;
+        }
+
+
+        .password-info {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                10px;
+
+            margin-top:
+                12px;
+        }
+
+
+        .password-info div {
+
+            background:
+                #f8fafc;
+
+            padding:
+                12px;
+
+            border-radius:
+                8px;
+
+            text-align:
+                center;
+        }
+
+
+        .password-info strong {
+
+            display:
+                block;
+
+            font-size:
+                18px;
+
+            margin-top:
+                4px;
+        }
+
+
+        /* =================================================
+           DETAILS
+        ================================================= */
+
+        .details {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                10px;
+        }
+
+
+        .detail {
+
+            padding:
+                12px;
+
+            background:
+                #f8fafc;
+
+            border-radius:
+                8px;
+        }
+
+
+        .detail span {
+
+            display:
+                block;
+
+            font-size:
+                12px;
+
+            color:
+                #64748b;
+
+            margin-bottom:
+                4px;
+        }
+
+
+        .detail strong {
+
+            font-size:
+                15px;
+        }
+
+
+        /* =================================================
+           SYSTEM STATUS
+        ================================================= */
+
+        .status-row {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            padding:
+                13px 0;
+
+            border-bottom:
+                1px solid #e5e7eb;
+        }
+
+
+        .status-row:last-child {
+
+            border-bottom:
+                none;
+        }
+
+
+        .dot {
+
+            width:
+                11px;
+
+            height:
+                11px;
+
+            border-radius:
+                50%;
+
+            display:
+                inline-block;
+
+            margin-right:
+                7px;
+
+            background:
+                #22c55e;
+        }
+
+
+        /* =================================================
+           ACTIVITY TABLE
+        ================================================= */
+
+        .table-wrapper {
+
+            overflow-x:
+                auto;
+        }
+
+
+        table {
+
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+        }
+
+
+        th,
+        td {
+
+            padding:
+                12px;
+
+            text-align:
+                left;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            font-size:
+                13px;
+        }
+
+
+        th {
+
+            background:
+                #f8fafc;
+        }
+
+
+        /* =================================================
+           WAITING
+        ================================================= */
+
+        .waiting {
+
+            background:
+                #f1f5f9;
+
+            color:
+                #475569;
+        }
+
+
+        .owner {
+
+            background:
+                #dcfce7;
+
+            color:
+                #166534;
+        }
+
+
+        .guest {
+
+            background:
+                #fef3c7;
+
+            color:
+                #92400e;
+        }
+
+
+        .unknown {
+
+            background:
+                #fee2e2;
+
+            color:
+                #991b1b;
+        }
+
+
+        /* =================================================
+           FOOTER
+        ================================================= */
+
+        footer {
+
+            text-align:
+                center;
+
+            padding:
+                20px;
+
+            color:
+                #64748b;
+
+            font-size:
+                12px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        Intelligent Access Control System
+    </h1>
+
+    <p>
+        Edge AI + MEC-Based Multi-Factor Physical Access Control
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- =================================================
+         MAIN GRID
+    ================================================= -->
+
+    <div class="grid">
+
+
+        <!-- =================================================
+             LEFT SIDE
+        ================================================= -->
+
+        <div>
+
+
+            <!-- CAMERA -->
+
+            <div class="card">
+
+                <h2>
+                    📷 Latest Authentication Capture
+                </h2>
+
+                <img
+                    id="cameraImage"
+                    class="camera"
+                    src="/dashboard/latest_image"
+                    alt="Latest authentication image"
+                >
+
+            </div>
+
+
+            <!-- AI RESULT -->
+
+            <div class="card">
+
+                <h2>
+                    🤖 AI Authentication Result
+                </h2>
+
+
+                <div class="result-box">
+
+
+                    <div class="result-item">
+
+                        <div class="result-label">
+                            PERSON
+                        </div>
+
+                        <div
+                            class="result-value"
+                            id="person"
+                        >
+                            NONE
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <div class="result-label">
+                            ROLE
+                        </div>
+
+                        <div
+                            class="result-value"
+                            id="role"
+                        >
+                            NONE
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <div class="result-label">
+                            AUTHENTICATION
+                        </div>
+
+                        <div
+                            class="result-value"
+                            id="authentication"
+                        >
+                            FALSE
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    id="accessBox"
+                    class="access waiting"
+                >
+                    WAITING
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div
+                class="card"
+                id="passwordCard"
+            >
+
+                <div class="password-title">
+                    🔐 ACCESS PASSWORD
+                </div>
+
+
+                <div
+                    id="passwordValue"
+                >
+                    ------
+                </div>
+
+
+                <div class="password-info">
+
+
+                    <div>
+
+                        Valid For
+
+                        <strong
+                            id="passwordValidity"
+                        >
+                            --
+                        </strong>
+
+                        seconds
+
+                    </div>
+
+
+                    <div>
+
+                        Maximum Attempts
+
+                        <strong
+                            id="passwordAttempts"
+                        >
+                            --
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <p
+                    style="
+                        text-align:center;
+                        color:#64748b;
+                        margin-bottom:0;
+                    "
+                >
+                    Enter this password on the physical keypad.
+                </p>
+
+            </div>
+
+
+            <!-- DETAILS -->
+
+            <div class="card">
+
+                <h2>
+                    📊 Authentication Details
+                </h2>
+
+
+                <div class="details">
+
+
+                    <div class="detail">
+
+                        <span>
+                            Face Distance
+                        </span>
+
+                        <strong id="distance">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>
+                            Authentication Threshold
+                        </span>
+
+                        <strong id="threshold">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>
+                            Timestamp
+                        </span>
+
+                        <strong id="timestamp">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>
+                            Access State
+                        </span>
+
+                        <strong id="accessState">
+                            WAITING
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT SIDE
+        ================================================= -->
+
+        <div>
+
+
+            <!-- SYSTEM STATUS -->
+
+            <div class="card">
+
+                <h2>
+                    🖥️ System Status
+                </h2>
+
+
+                <div class="status-row">
+
+                    <span>
+                        <span class="dot"></span>
+                        Raspberry Pi
+                    </span>
+
+                    <strong>
+                        ONLINE
+                    </strong>
+
+                </div>
+
+
+                <div class="status-row">
+
+                    <span>
+                        <span class="dot"></span>
+                        Camera
+                    </span>
+
+                    <strong>
+                        ONLINE
+                    </strong>
+
+                </div>
+
+
+                <div class="status-row">
+
+                    <span>
+                        <span class="dot"></span>
+                        MEC Server
+                    </span>
+
+                    <strong>
+                        ONLINE
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ACTIVITY -->
+
+            <div class="card">
+
+                <h2>
+                    📝 Recent Authentication Activity
+                </h2>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Time
+                                </th>
+
+                                <th>
+                                    Person
+                                </th>
+
+                                <th>
+                                    Role
+                                </th>
+
+                                <th>
+                                    Access
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="activityTable"
+                        >
+
+                            <tr>
+
+                                <td colspan="4">
+                                    Waiting for authentication...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<footer>
+
+    Intelligent Vision-Based Multi-Factor Physical Access Control
+
+</footer>
+
+
+<script>
+
+
+    // ========================================================
+    // UPDATE DASHBOARD
+    // ========================================================
+
+    async function updateDashboard() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "/dashboard/state",
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                return;
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            // ------------------------------------------------
+            // PERSON
+            // ------------------------------------------------
+
+            document.getElementById(
+                "person"
+            ).textContent =
+                data.person || "NONE";
+
+
+            // ------------------------------------------------
+            // ROLE
+            // ------------------------------------------------
+
+            document.getElementById(
+                "role"
+            ).textContent =
+                data.role || "NONE";
+
+
+            // ------------------------------------------------
+            // AUTHENTICATION
+            // ------------------------------------------------
+
+            document.getElementById(
+                "authentication"
+            ).textContent =
+                data.authenticated
+                    ? "TRUE"
+                    : "FALSE";
+
+
+            // ------------------------------------------------
+            // DISTANCE
+            // ------------------------------------------------
+
+            document.getElementById(
+                "distance"
+            ).textContent =
+                data.distance !== null &&
+                data.distance !== undefined
+                    ? data.distance
+                    : "--";
+
+
+            // ------------------------------------------------
+            // THRESHOLD
+            // ------------------------------------------------
+
+            document.getElementById(
+                "threshold"
+            ).textContent =
+                data.threshold !== null &&
+                data.threshold !== undefined
+                    ? data.threshold
+                    : "--";
+
+
+            // ------------------------------------------------
+            // TIMESTAMP
+            // ------------------------------------------------
+
+            document.getElementById(
+                "timestamp"
+            ).textContent =
+                data.timestamp || "--";
+
+
+            // ------------------------------------------------
+            // ACCESS
+            // ------------------------------------------------
+
+            const access =
+                data.access || "WAITING";
+
+
+            document.getElementById(
+                "accessState"
+            ).textContent =
+                access;
+
+
+            const accessBox =
+                document.getElementById(
+                    "accessBox"
+                );
+
+
+            accessBox.textContent =
+                access;
+
+
+            // Remove old classes
+
+            accessBox.classList.remove(
+                "waiting",
+                "owner",
+                "guest",
+                "unknown"
+            );
+
+
+            if (
+                data.role === "OWNER"
+            ) {
+
+                accessBox.classList.add(
+                    "owner"
+                );
+
+            }
+
+            else if (
+                data.role === "GUEST"
+            ) {
+
+                accessBox.classList.add(
+                    "guest"
+                );
+
+            }
+
+            else if (
+                data.role === "UNKNOWN"
+            ) {
+
+                accessBox.classList.add(
+                    "unknown"
+                );
+
+            }
+
+            else {
+
+                accessBox.classList.add(
+                    "waiting"
+                );
+
+            }
+
+
+            // =================================================
+            // PASSWORD CARD
+            // =================================================
+
+            const passwordCard =
+                document.getElementById(
+                    "passwordCard"
+                );
+
+
+            const passwordValue =
+                document.getElementById(
+                    "passwordValue"
+                );
+
+
+            const passwordValidity =
+                document.getElementById(
+                    "passwordValidity"
+                );
+
+
+            const passwordAttempts =
+                document.getElementById(
+                    "passwordAttempts"
+                );
+
+
+            /*
+             * MEC stores the generated password in:
+             *
+             * guest_password
+             *
+             * For both known GUEST and newly registered
+             * UNKNOWN users.
+             */
+
+            const password =
+                data.guest_password;
+
+
+            const role =
+                String(
+                    data.role || ""
+                ).toUpperCase();
+
+
+            // ------------------------------------------------
+            // SHOW PASSWORD
+            // ------------------------------------------------
+
+            if (
+                password &&
+                (
+                    role === "GUEST" ||
+                    role === "UNKNOWN"
+                )
+            ) {
+
+                passwordCard.style.display =
+                    "block";
+
+
+                passwordValue.textContent =
+                    password;
+
+
+                passwordValidity.textContent =
+                    data.guest_password_valid_seconds
+                    ?? "--";
+
+
+                passwordAttempts.textContent =
+                    data.guest_password_attempts
+                    ?? "--";
+
+            }
+
+            else {
+
+                passwordCard.style.display =
+                    "none";
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.log(
+                "Dashboard state error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // ========================================================
+    // UPDATE ACTIVITY
+    // ========================================================
+
+    async function updateActivity() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "/dashboard/activity",
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                return;
+
+            }
+
+
+            const activity =
+                await response.json();
+
+
+            const table =
+                document.getElementById(
+                    "activityTable"
+                );
+
+
+            if (
+                !activity ||
+                activity.length === 0
+            ) {
+
+                table.innerHTML =
+                    `
+                    <tr>
+                        <td colspan="4">
+                            No authentication activity yet.
+                        </td>
+                    </tr>
+                    `;
+
+                return;
+
+            }
+
+
+            // Show latest first
+
+            const latest =
+                activity
+                    .slice()
+                    .reverse()
+                    .slice(0, 15);
+
+
+            table.innerHTML =
+                "";
+
+
+            latest.forEach(
+                entry => {
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML =
+                        `
+                        <td>
+                            ${entry.timestamp || "--"}
+                        </td>
+
+                        <td>
+                            ${entry.person || "--"}
+                        </td>
+
+                        <td>
+                            ${entry.role || "--"}
+                        </td>
+
+                        <td>
+                            ${entry.access || "--"}
+                        </td>
+                        `;
+
+
+                    table.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+        }
+
+        catch (error) {
+
+            console.log(
+                "Activity error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // ========================================================
+    // UPDATE CAMERA IMAGE
+    // ========================================================
+
+    function updateCamera() {
+
+        const image =
+            document.getElementById(
+                "cameraImage"
+            );
+
+
+        image.src =
+            "/dashboard/latest_image?t="
+            + new Date().getTime();
+
+    }
+
+
+    // ========================================================
+    // INITIAL UPDATE
+    // ========================================================
+
+    updateDashboard();
+
+    updateActivity();
+
+    updateCamera();
+
+
+    // ========================================================
+    // AUTO REFRESH
+    // ========================================================
+
+    setInterval(
+        updateDashboard,
+        1000
+    );
+
+
+    setInterval(
+        updateActivity,
+        2000
+    );
+
+
+    setInterval(
+        updateCamera,
+        2000
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -8,9 +8,11 @@ __pycache__/
 # Personal biometric/data files
 dataset/
 owner_photos/
+guest_database/
 security_records/
 temporary_guests/
 impostor_photos/
+reference image/
 
 # Audio/debug data
 *.wav
@@ -19,6 +21,10 @@ voice_debug/
 # Local database / personal registration data
 *.db
 face_database.json
+manual_credentials.json
+
+# Generated files
+dashboard_latest.jpg
 
 # Old/generated LBPH files
 trainer/
